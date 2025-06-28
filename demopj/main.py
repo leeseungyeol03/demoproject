@@ -1,9 +1,8 @@
 # backend/main.py
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
-from demopj.routers import feedback            # ✅ 절대 경로
 from demopj.database import engine, Base        # ✅ 절대 경로
-
+from demopj.routers import feedback, datapoint, cluster
 
 import inspect, sys
 from demopj.database import get_session    # ← 기존 코드
@@ -28,3 +27,5 @@ async def startup():
 
 # 라우터 등록
 app.include_router(feedback.router)
+app.include_router(datapoint.router) 
+app.include_router(cluster.router)  
